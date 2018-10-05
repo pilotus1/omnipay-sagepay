@@ -45,6 +45,12 @@ class ServerAuthorizeRequest extends DirectAuthorizeRequest
             $data['Profile'] = $this->getProfile();
         }
 
+        $createCard = $this->getCreateToken() ?: $this->getCreateCard();
+
+        if ($createCard !== null) {
+            $data['CreateToken'] = $createCard ? static::CREATE_TOKEN_YES : static::CREATE_TOKEN_NO;
+        }
+
         return $data;
     }
 
