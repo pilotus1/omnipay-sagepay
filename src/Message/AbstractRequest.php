@@ -376,17 +376,12 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
      * database and returned to you for future use.
      * Values set in contants CREATE_TOKEN_*
      *
-     * @param bool|int $createToken 0 = This will not create a token from the payment (default).
+     * @param int static::CREATE_TOKEN_YES or static::CREATE_TOKEN_NO
      * @return $this
      */
-    public function setCreateToken($createToken)
+    public function setCreateToken($value)
     {
-        $createToken = (bool)$createToken;
-
-        return $this->setParameter(
-            'createToken',
-            ($createToken ? static::CREATE_TOKEN_YES : static::CREATE_TOKEN_NO)
-        );
+        return $this->setParameter('createToken', $value);
     }
 
     /**
@@ -395,6 +390,21 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
     public function getCreateToken()
     {
         return $this->getParameter('createToken');
+    }
+
+    /**
+     * Alias for setCreateToken()
+     */
+    public function setCreateCard($value)
+    {
+        return $this->setCreateToken($value);
+    }
+    /**
+     * Alias for getCreateToken()
+     */
+    public function getCreateCard()
+    {
+        return $this->getCreateToken();
     }
 
     /**
